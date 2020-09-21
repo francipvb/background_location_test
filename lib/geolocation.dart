@@ -20,7 +20,7 @@ Future<bool> get isListening async =>
 
 Future<void> startListening() async {
   if (!await BackgroundLocator.isRegisterLocationUpdate()) {
-    BackgroundLocator.registerLocationUpdate(
+    await BackgroundLocator.registerLocationUpdate(
       _handleLocationReceived,
       initCallback: _backgroundInitialize,
       disposeCallback: _disposeBackground,
@@ -36,7 +36,7 @@ Future<void> startListening() async {
 
 Future<void> stopListening() async {
   if (await BackgroundLocator.isRegisterLocationUpdate()) {
-    BackgroundLocator.unRegisterLocationUpdate();
+    await BackgroundLocator.unRegisterLocationUpdate();
   } else {
     throw UnsupportedError('The service is not running.');
   }
